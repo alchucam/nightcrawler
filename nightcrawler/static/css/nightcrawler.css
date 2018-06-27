@@ -1,0 +1,273 @@
+/*header: https://www.w3schools.com/howto/howto_css_responsive_header.asp */
+
+@font-face{
+	font-family: 'Prata-Regular';
+	font-style: normal;
+	src: url('Prata-Regular.ttf') format('truetype');
+}
+
+
+/***** general *****/
+
+html{
+	overflow-y: scroll;
+	padding-bottom: 1px;
+}
+
+
+* {box-sizing: border-box;}
+
+body {
+  margin: 0;
+  font-family: Arial;
+	background-color: #F4E9FF;
+}
+
+a, a:link, a:visited {
+	color: #63c2d6;
+}
+
+
+/***** header *****/
+.header {
+  overflow: hidden;
+  background-color: #e9d3ff;
+  padding: 20px 10px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.head {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header a:hover {
+  background-color: #e6d190;
+  color: black;
+}
+
+.header-right {
+ 	float: right;
+}
+
+.header-right a.active {
+	background-color:#fff4d3;
+	color: #8b7e99;
+}
+/*
+.header-right a.active {
+  background-color: dodgerblue;
+  color: white;
+}*/
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+
+/***** main *****/
+main {
+	padding-left: 5%;
+}
+
+/***** home.html *****/
+.home-title {
+
+}
+
+.home-content {
+
+	padding-top: 2%;
+	padding-left: 10%;
+
+	border: 3px;
+	width: auto;
+
+	display: block;
+}
+/***** maintitle *****/
+
+/***** news *****/
+.content_title {
+	font-size: 25px;
+	display:inline;
+}
+.content_date {
+	color: #A9A9A9;
+}
+.menu-news li{
+	display: inline;
+}
+
+.publisher {
+	color: #f04b00;
+}
+
+.published-date {
+	color: #a8a8a8;
+}
+
+
+/***** menu *****/
+.menu-news, .menu-from, .menu-to {
+	overflow: hidden;
+	padding: 3px 10px;
+}
+
+.menu-news a, .menu-from a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+/* hidden initially */
+.menu-to a {
+	visibility: hidden;
+	float: left;
+	color: black;
+	text-align: center;
+	padding: 12px;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 25px;
+	border-radius: 4px;
+}
+
+
+.menu-news a.head, .menu-from a.head, .menu-to a.head {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.menu-news a:hover, .menu-from a:hover, .menu-to a:hover {
+  background-color: #e6d7a4;
+  color: black;
+}
+
+
+.menu-news a.active, .menu-from a.active, .menu-to a.active {
+  background-color: #fffae9;
+  color: #8b7e99;
+}
+
+
+
+/*
+.header-right a.active {
+  background-color: dodgerblue;
+  color: white;
+}*/
+
+@media screen and (max-width: 500px) {
+  .menu-news a, .menu-from a, .menu-to a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .menu-news, .menu-from, .menu-to {
+    float: none;
+  }
+}
+
+
+
+/***** menu-dates *****/
+.menu-dates {
+	overflow: hidden;
+	padding: 0 10px 3px 10px;
+}
+
+.menu-dates a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.menu-dates a.head {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.menu-dates a:hover {
+  background-color: #e6d7a4;
+  color: black;
+}
+
+
+.menu-dates a.active {
+  background-color: #fffae9;
+  color: #8b7e99;
+}
+
+
+
+/*
+.header-right a.active {
+  background-color: dodgerblue;
+  color: white;
+}*/
+
+@media screen and (max-width: 500px) {
+  .menu-dates a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .menu-dates {
+    float: none;
+  }
+}
+
+
+/***** paginator *****/
+.pagination {
+    display: inline-block;
+		margin: 0 0 4% 0;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+		background-color:#fff4d3;
+		color: #8b7e99;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #e6d190;
+    border-radius: 5px;
+}
+
+
+/**/
