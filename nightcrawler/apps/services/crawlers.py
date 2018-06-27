@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from nightcrawler.apps.services import analyzer
+from nightcrawler.apps.services.analyzer import *
 from nightcrawler.apps.services.models import newsData, collectedData
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
