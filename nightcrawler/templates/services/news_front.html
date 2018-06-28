@@ -9,21 +9,4 @@
 <div class="content_title">Latest</div>
 <span class="content_date">{{today_time}}</span>
 
-{% for key, value in queryset.items %}
-<ul id="front_list">
-  <li>
-    <a href={{value.url}}>{{value.title}}</a>
-    <span class="publisher">{{value.publisher}}</span>
-    <span class="published-date"><small>published date: {{value.dateStr}}</small></span><br>
-    <small>
-      {% if value.isArticle %}
-      Top 10 frequent words: {{value.freqList}}. <br>
-      Sentiment score: {{value.compound}}.
-      {% else %}
-      Noncontent articles. <br>
-      Not applicable to obtain top 10 frequent words and setinment scores.
-      {% endif %}
-    </small>
-</ul>
-{% endfor %}
 {% endblock %}
