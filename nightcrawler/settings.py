@@ -67,7 +67,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'nightcrawler.wsgi.application'
 
 
-DATABASES['default'] = dj_database_url_config(conn_max_age=600, ssl_require=True)
+DATABASES = { 'default': dj_database_url.config(conn_max_age=600, ssl_require=True)}
+
 
 
 
