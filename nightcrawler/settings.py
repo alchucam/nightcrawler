@@ -136,3 +136,5 @@ CELERYBEAT_SCHEDULE = {
 NYTIMES_API_KEY= config('NYTIMES_API_KEY')
 
 django_heroku.settings(locals())
+
+BROKER_POOL_LIMIT = 3
