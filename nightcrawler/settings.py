@@ -1,4 +1,5 @@
 import os
+import django_heroku
 from unipath import Path
 from decouple import config
 
