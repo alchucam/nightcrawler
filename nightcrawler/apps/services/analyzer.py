@@ -14,6 +14,8 @@ from nltk.metrics import BigramAssocMeasures
 from nightcrawler.apps.services.models import newsData
 from django.utils import timezone
 
+nltk.data.path.append('./nltk_data/')
+
 #portion 1: sentiment analysis
 #portion 2: top 10 frequent words
 #portion 3: analyze for collectedData model
