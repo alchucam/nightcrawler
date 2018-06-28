@@ -1,5 +1,6 @@
 import os
 import django_heroku
+import dj_database_url
 from unipath import Path
 from decouple import config
 
@@ -66,15 +67,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'nightcrawler.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': config('DB_ENGINE'),
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST':config('DB_HOST'),
-    }
-}
+DATABASES['default'] = dj_database_url_config(conn_max_age=600, ssl_require=True)
+
 
 
 AUTH_PASSWORD_VALIDATORS = [
