@@ -2,7 +2,8 @@
 
 from django.db.models import F
 from nightcrawler.apps.services.models import *
-from nightcrawler.apps.services import crawlers, analyzer
+from nightcrawler.apps.services import crawlers
+from nightcrawler.apps.services.analyzer import *
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime, date
 
