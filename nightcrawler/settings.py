@@ -18,6 +18,7 @@ DEBUG = config('DEBUG',default=False,cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 INSTALLED_APPS = [
+    'nightcrawler.apps.services',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -25,7 +26,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'nightcrawler.apps.services',
     'django_windows_tools',
     'celerybeat_status',
     'django_celery_results',
