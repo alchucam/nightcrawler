@@ -54,7 +54,11 @@ class abstractBaseCrawler(object):
                 if publisher is 'yonhap' or publisher is 'ecns':
                     newsContent = soup2.find_all("div", class_= keyword)
                 elif publisher is 'japantimes':
-                    newsContent = soup2.find('div', id= keyword).findAll('p')
+                    newsContentfind = soup2.find('div', id= keyword)
+                    if newsContentfind is not None:
+                        newsContent = newsContentfind.findAll('p')
+                    else:
+                        continue
 
                 for content in newsContent:
                     strContainer = strContainer + " " + content.text
