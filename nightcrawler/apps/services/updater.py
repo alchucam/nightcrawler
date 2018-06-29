@@ -16,7 +16,7 @@ class abstractBaseUpdater(object):
         self.fromCountry = fromCountry
 
     def save_to_models(self):
-        print("calling save_to_models")
+        print("calling save_to_models with {}".format(self.publisher))
         top_stories = self.crawler.get_Contents() #all the titles and articles
 
         if not top_stories: #if get_Contents return empty dict. end the function
@@ -40,6 +40,7 @@ class abstractBaseUpdater(object):
 
 
     def save_to_analysis(self):
+        print("calling save_to_analysis with {}".format(self.fromCountry))
         today = timezone.now()
         dates = date(int(today.year), int(today.month), int(today.day))
 

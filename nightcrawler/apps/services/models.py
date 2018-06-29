@@ -27,6 +27,15 @@ class newsData(models.Model):
     def newsData_title(self):
         return self.title
 
+    def delete_old(self):
+        delete_data = newsData.objects.filter(date__day__gte=8)
+        if delete_data.exists():
+            print("delete successful")
+        else:
+            print("delete fail")
+        #newsData.objects.filter(date__day__gte=8).delete()
+
+
 
 class collectedData(models.Model):
     fromCountry = models.CharField(max_length=3)
@@ -43,3 +52,11 @@ class collectedData(models.Model):
         verbose_name_plural = 'Collected Data'
     def __str__(self):
         return str(self.date) + " from " + self.fromCountry + " to " + self.toCountry + " exists: " + str(self.toCheck)
+
+    def delete_old(self):
+        delete_data = collectedData.objects.filter(date__day__gte=8)
+        if delete_data.exists():
+            print("delete successful")
+        else:
+            print("delete fail")
+        #collectedData.objects.filter(date__day__gte=8).delete()
