@@ -28,7 +28,7 @@ class newsData(models.Model):
         return self.title
 
     def delete_old(self):
-        delete_data = newsData.objects.filter(date__day__gte=8)
+        delete_data = self.filter(date__day__gte=8)
         if delete_data.exists():
             print("delete successful")
         else:
@@ -54,7 +54,7 @@ class collectedData(models.Model):
         return str(self.date) + " from " + self.fromCountry + " to " + self.toCountry + " exists: " + str(self.toCheck)
 
     def delete_old(self):
-        delete_data = collectedData.objects.filter(date__day__gte=8)
+        delete_data = self.filter(date__day__gte=8)
         if delete_data.exists():
             print("delete successful")
         else:
