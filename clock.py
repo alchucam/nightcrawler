@@ -12,16 +12,19 @@ django.setup()
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 from nightcrawler.apps.services.models import *
+from django.utils import timezone
+from datetime import timedelta
 
 #for custom periodic tasks
 #delete old data that is more than 8 days.
 
 sched = BlockingScheduler()
 
+
 @sched.scheduled_job('interval', minutes=3)
 def delete_old_data():
-    print("Start custom periodic tasks")
-    delete_newsData = newsData.objects.filter(date__day__gte=8)
+    print("Start custom periodic tasks lte")
+    delete_newsData = newsData.objects.filter(date__lte=timezone.now() - timedelta(days=3))
     if delete_newsData.exists():
         print("delete successful")
         for delete in delete_newsData:
@@ -30,8 +33,8 @@ def delete_old_data():
         print("delete fail")
     print("Finish custom periodic tasks")
 
-    print("Start custom periodic tasks")
-    delete_newsData = newsData.objects.filter(date__day__lte=8)
+    print("Start custom periodic tasks gte")
+    delete_newsData = newsData.objects.filter(date__gte=timezone.now() - timedelta(days=3))
     if delete_newsData.exists():
         print("delete successful")
         for delete in delete_newsData:
