@@ -18,13 +18,23 @@ from nightcrawler.apps.services.models import *
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('interval', minutes=10)
+@sched.scheduled_job('interval', minutes=3)
 def delete_old_data():
     print("Start custom periodic tasks")
-    delete_collectedData = collectedData.objects.filter(date__day__gte=8)
-    if delete_collectedData.exists():
+    delete_newsData = newsData.objects.filter(date__day__gte=8)
+    if delete_newsData.exists():
         print("delete successful")
-        for delete in delete_collectedData:
+        for delete in delete_newsData:
+            print(delete.title)
+    else:
+        print("delete fail")
+    print("Finish custom periodic tasks")
+
+    print("Start custom periodic tasks")
+    delete_newsData = newsData.objects.filter(date__day__lte=8)
+    if delete_newsData.exists():
+        print("delete successful")
+        for delete in delete_newsData:
             print(delete.title)
     else:
         print("delete fail")
