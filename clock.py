@@ -16,31 +16,24 @@ from django.utils import timezone
 from datetime import timedelta
 
 #for custom periodic tasks
-#delete old data that is more than 8 days.
+#delete old data that is more than 7 days.
 
 sched = BlockingScheduler()
 
+@sched.scheduled_job('interval', minutes=40)
+def ping():
+    print("i'm still alive!")
 
-@sched.scheduled_job('interval', minutes=3)
+@sched.scheduled_job('interval', days=8)
 def delete_old_data():
     print("Start custom periodic tasks lte")
-    delete_newsData = newsData.objects.filter(date__lte=timezone.now() - timedelta(days=3))
+    delete_newsData = newsData.objects.filter(date__lte=timezone.now() - timedelta(days=7))
     if delete_newsData.exists():
+        delete_newsData.delete()
         print("delete successful")
-        for delete in delete_newsData:
-            print(delete.title)
     else:
         print("delete fail")
     print("Finish custom periodic tasks")
 
-    print("Start custom periodic tasks gte")
-    delete_newsData = newsData.objects.filter(date__gte=timezone.now() - timedelta(days=3))
-    if delete_newsData.exists():
-        print("delete successful")
-        for delete in delete_newsData:
-            print(delete.title)
-    else:
-        print("delete fail")
-    print("Finish custom periodic tasks")
 
 sched.start()
