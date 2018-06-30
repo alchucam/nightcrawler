@@ -24,9 +24,10 @@ sched = BlockingScheduler()
 def ping():
     print("i'm still alive!")
 
-@sched.scheduled_job('interval', days=8)
+#@sched.scheduled_job('interval', days=1)
+@sched.scheduled_job('cron', timezone='UTC', hour=0)
 def delete_old_data():
-    print("Start custom periodic tasks lte")
+    print("Start custom periodic tasks. Run at 00:00 UTC")
     delete_newsData = newsData.objects.filter(date__lte=timezone.now() - timedelta(days=7))
     if delete_newsData.exists():
         delete_newsData.delete()
