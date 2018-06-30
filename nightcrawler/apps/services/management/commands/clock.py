@@ -14,8 +14,13 @@ class Command(BaseCommand):
         @sched.scheduled_job('interval', minutes=10)
         def delete_old_data():
             print("Start custom periodic tasks")
-            newsData.delete_old()
-            collectedData.delete_old()
+            delete_collectedData = collectedData.objects.filter(date__day__gte=8)
+            if delete_collectedData.exists():
+                print("delete successful")
+            else:
+                print("delete fail")
             print("Finish custom periodic tasks")
         sched.start()
         print("finish calling custom command")
+
+        #collectedData.objects.filter(date__day__gte=8).delete()
