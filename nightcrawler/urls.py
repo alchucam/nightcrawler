@@ -11,4 +11,5 @@ urlpatterns = [
     path('news_front/', views.news_front, name="news_front"),
     path('news_front/<publisher>/', include(('nightcrawler.apps.services.urls', 'index'), namespace="news")),
     path('analysis/', views.analysis, name="analysis"),
+    path('analysis/results', views.search, name="search"),
 ]
