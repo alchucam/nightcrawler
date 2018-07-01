@@ -24,6 +24,7 @@ sched = BlockingScheduler()
 def ping():
     print("i'm still alive!")
 
+
 #@sched.scheduled_job('interval', days=1)
 @sched.scheduled_job('cron', timezone='UTC', hour=0)
 def delete_old_data():
