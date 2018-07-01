@@ -33,21 +33,20 @@ class displayer(object):
         #utc-awrare milliseconds
         weeklist = list()
         processed = list()
+
         #get milliseconds format for javascript
-        for i in range(0, 7):
-            weeklist.append(int(((timezone.now().replace(hour = 0, minute = 0, second = 0, microsecond = 0) - timedelta(days=i))-epoch).total_seconds()*1000.0))
-        queryset = collectedData.objects.filter(fromCountry=fromCountry, toCountry=toCountry, date__range=[timezone.now()-timedelta(days=7),timezone.now()]).order_by('-date')
-        avgcompound_list = list()
-        for query in queryset:
-            if query.avgcompound is None:
-                avgcompound_list.append('null')
-            else:
-                avgcompound_list.append(float(query.avgcompound))
-        zipIt = zip(weeklist, avgcompound_list)
-        for day, compound in zipIt:
+        for i in range(0, 7): #going from today -> last 7 days
             innerlist = list()
-            innerlist.extend([day, compound])
-            processed.append(innerlist)
+            day = int(((timezone.now().replace(hour = 0, minute = 0, second = 0, microsecond = 0) - timedelta(days=i))-epoch).total_seconds()*1000.0)
+            try:
+                query = collectedData.objects.get(fromCountry=fromCountry, toCountry=toCountry, date=timezone.now() - timedelta(i))
+                if query.avgcompound is None:
+                    innerlist.extend([day, 'null'])
+                else:
+                    innerlist.extend([day, float(query.avgcompound)])
+                processed.append(innerlist)
+            except collectedData.DoesNotExist: #if no data, skip the day
+                continue
         return processed
 
     #prepares all the necessary data for highcharts in the template
@@ -70,20 +69,18 @@ class displayer(object):
         weeklist = list()
         processed = list()
         #get milliseconds format for javascript
-        for i in range(0, 7):
-            weeklist.append(int(((timezone.now().replace(hour = 0, minute = 0, second = 0, microsecond = 0) - timedelta(days=i))-epoch).total_seconds()*1000.0))
-        queryset = collectedData.objects.filter(fromCountry=fromCountry, toCountry=toCountry, date__range=[timezone.now()-timedelta(days=7),timezone.now()]).order_by('-date')
-        ratiolist = list()
-        for query in queryset:
-            if query.total_num is not 0:
-                ratiolist.append(round((query.to_num/query.total_num),3))
-            else:
-                ratiolist.append(0)
-        zipIt = zip(weeklist, ratiolist)
-        for day, compound in zipIt:
+        for i in range(0, 7): #going from today -> last 7 days
             innerlist = list()
-            innerlist.extend([day, compound])
-            processed.append(innerlist)
+            day = int(((timezone.now().replace(hour = 0, minute = 0, second = 0, microsecond = 0) - timedelta(days=i))-epoch).total_seconds()*1000.0)
+            try:
+                query = collectedData.objects.get(fromCountry=fromCountry, toCountry=toCountry, date=timezone.now()-timedelta(i))
+                if query.total_num is 0:
+                    innerlist.extend([day, 0])
+                else:
+                    innerlist.extend([day,round((query.to_num/query.total_num),3)])
+                processed.append(innerlist)
+            except collectedData.DoesNotExist: #no data, skip the day
+                continue
         return processed
 
     #prepares all the necessary data for highcharts-area(ratio) in the template
