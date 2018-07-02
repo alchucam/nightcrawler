@@ -51,15 +51,20 @@ def day(request, publisher, year, month, day):
 
 
 def analysis(request):
-    data = displayer()
-    template_data = data.analysis_displayer()
-    ratio_data = data.ratio_displayer()
+    if request.method == 'GET':
+        results = search_displayer('Trump')
+        return render(reuqest, 'services/analysis.html', {'search':True, 'results':results, 'print':'print'})
+    else:
+        data = displayer()
+        template_data = data.analysis_displayer()
+        ratio_data = data.ratio_displayer()
+        return render(request, 'services/analysis.html', {'search':False, 'template_data':template_data, 'ratio_data':ratio_data})
 
-    return render(request, 'services/analysis.html', {'template_data':template_data, 'ratio_data':ratio_data})
 
-def search(request):
+
+#def search(request):
 #    query = request.GET.get('q')
 #    results = Post.objects.filter(Q(title__icontains=query))
-    keyword = 'Trump'
-    results = search_displayer(keyword)
-    return render(request, 'services/analysis.html', {'results':results})
+#    keyword = 'Trump'
+#    results = search_displayer(keyword)
+#    return render(request, 'services/analysis.html', {'results':results})
