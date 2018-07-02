@@ -51,8 +51,12 @@ def day(request, publisher, year, month, day):
 
 
 def analysis(request):
-    data = displayer()
-    template_data = data.analysis_displayer()
-    ratio_data = data.ratio_displayer()
-
-    return render(request, 'services/analysis.html', {'template_data':template_data, 'ratio_data':ratio_data})
+    if request.method == 'GET':
+        results = search_displayer('Trump')
+        return render(reuqest, 'services/analysis.html', {'search':True, 'results':results, 'print':'print'})
+    else:
+        data = displayer()
+        template_data = data.analysis_displayer()
+        ratio_data = data.ratio_displayer()
+        return render(request, 'services/analysis.html', {'search':False,'template_data':template_data, 'ratio_data':ratio_data})
+atio_data})
