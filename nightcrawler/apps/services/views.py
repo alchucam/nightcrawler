@@ -58,6 +58,8 @@ def analysis(request):
     return render(request, 'services/analysis.html', {'template_data':template_data, 'ratio_data':ratio_data})
 
 def search(request):
-    query = request.GET.get('q')
-    results = Post.objects.filter(Q(title__icontains=query))
-    return render(request, 'services/analysis.html')
+#    query = request.GET.get('q')
+#    results = Post.objects.filter(Q(title__icontains=query))
+    keyword = 'Trump'
+    results = search_displayer(keyword)
+    return render(request, 'services/analysis.html', {'results':results})
