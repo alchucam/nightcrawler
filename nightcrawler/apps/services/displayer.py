@@ -95,3 +95,52 @@ class displayer(object):
                 ratio_data[fCon][tCon] = self.ratio_creator(fCon, tCon)
 
         return ratio_data
+
+    #displayer methods for search
+    def search_find_avgcompound(self, keyword, fSearch):
+        combined_processed = dict()
+        analysis_processed = list()
+        ratio_processed = list()
+        for i in range(0, 7):
+            analysis_innerlist = list()
+            ratio_innerlist = list()
+            avgcompound = 0
+            sumcompound = 0
+            count = 0 #number of query; same as to_num in collectedData
+            day = int(((timezone.now().replace(hour = 0, minute = 0, second = 0, microsecond = 0) - timedelta(days=i))-epoch).total_seconds()*1000.0)
+            try:
+                queryset = newsData.objects.filter(publisher=fSearch, date=timezone.now()-timedelta(i), freqList__contains=keyword)
+                total_num = newsData.bojects.filter(publisher=fSearch, date=timezone.now()-timedelta(i)).count()
+
+                #for sentiment analysis highcharts
+                for query in queryset:
+                    sumcompound += query.compound
+                    count += 1
+                if count is not 0:
+                    avgcompound = sumcompound/count
+                    analysis_innerlist.extend([day, float(avgcompound)])
+                else:
+                    analysis_innerlist.extend([day, 'null'])
+                analysis_processed.append(analysis_innerlist)
+
+                #for ratio highcharts
+                if total_num is 0:
+                    ratio_innerlist.extend([day, 0])
+                else:
+                    ratio_innerlist.extend([day,round((count/total_num),3)])
+                ratio_processed.append(ratio_innerlist)
+
+            except newsData.DoesNotExist:
+                continue
+
+
+
+        return combined_processed({'analysis':analysis_processed,'ratio':ratio_processed})
+
+    def search_displayer(self, keyword):
+        fromSearchList = ["nytimes", "ecns", "japantimes", "yonhap"]
+        fromList = ["USA","CHN","JPN","KOR"]
+        search_data = dict()
+        for i in range(0, 4):
+            serach_data[fromList[i]] = search_find_avgcompound(self, keyword, fromSearchList[i])
+        return search_data
