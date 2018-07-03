@@ -3,30 +3,34 @@
 
 {% block content%}
 <div class="home-content">
-  <h2>Welcome to NightCrawler!</h2>
+  <h2 style="color:red;">Welcome to NightCrawler!</h2>
   <p>This is a simple experimental website to display most popular international news along with their links.<br>
     Are you a busy person? Are you tired of reading all the news just to catch up with all the topics people are talking about?<br>
     You've come to the right place! You can find out all the most mentioned keywords in the global news!<br>
-    And you can check the sentiment scores to see whether the news articles are being positive or negative!<br><br>
+    You can type your own keywords to see if any publishers mentioned them!<br>
+    And you can check the sentiment scores to see whether the news articles are being positive or negative to the keyword!<br><br>
     Here's some information for you.<br>
-    <b>News Tab:</b> The website parses and analyzes the context to determine the sentiment scores and most frequent words of the contexts.<br/>
-    nytimes: New York Times (USA). yonhap: Yonhap News Agency (South Korea). <br/>
-    ecns: English-language website of China News Service (China). japantimes: The Japan Times (Japan). <br/><br/>
-    <b>Analaysis Tab:</b> The international current state of affairs are analyzed using the average sentiment scores from the number of articles mentioned the selected country.<br/>
-    <i>How to use analysis tab:</i> First, choose a country to select the source country of news articles. <br/>
+    <b style="color:red;">News Tab:</b> The website parses and analyzes the context to determine the sentiment scores and most frequent words of the contexts.<br/>
+    <i>nytimes:</i> New York Times (USA). <i>yonhap:</i> Yonhap News Agency (South Korea). <br/>
+    <i>ecns:</i> English-language website of China News Service (China). <i>japantimes:</i> The Japan Times (Japan). <br/><br/>
+    <b style="color:red;">Analaysis Tab:</b> The international current state of affairs are analyzed using the average sentiment scores from the number of articles mentioned in the selected country.<br/>
+    <i>How to use analysis tab:</i><br/>
+    <i><u>Select:</u></i> First, choose a country to select the source country of news articles. <br/>
     Then, choose any countries below to select the target countries that were mentioned in the source country of news articles. <br/>
-    You will be able to view the average sentiment scores of the news articles of source country mentioning the target countries. <br/>
-    You will also be able to view the ratio of news articles mentioning the target countries to the total news articles of source country. <br/><br/>
-    <i>Sentiment Analysis:</i> the scores are determined using NLTK package.<br>
+    <i><u>Type:</u></i> You can type a keyword that appears in the top 10 frequent words in the source country of news articles.<br/>
+    <i>In either case:</i>
+    You will be able to view the average sentiment scores of the news articles of source country mentioning the target countries/keyword. <br/>
+    You will also be able to view the ratio of news articles mentioning the target countries/keyword to the total news articles of source country. <br/><br/>
+    <i style="color:blue;">Sentiment Analysis:</i> the scores are determined using NLTK package.<br>
     Score 0 represents neutral, 1 represents the most positive and -1 represents the most negative sentiment.<br><br>
     The timezone is based on UTC +0.<br>
     Please enjoy!<br>
   </p>
-  <p class="home-p-title">Languages used:</p>
+  <p class="home-p-title" style="color:blue;">Languages used:</p>
   <p class="home-p-content">
-    <span><b>Front End:</b> HTML, Javascript, CSS</span><br/>
-    <span><b>Back End:</b> Python, MYSQL</span><br/>
-    <span><b>Libraries:</b> BeautifulSoup, NLTK, HighCharts</span>
+    <span><b style="color:red;">Front End:</b> HTML, Javascript, CSS</span><br/>
+    <span><b style="color:red;">Back End:</b> Python, PostgreSQL</span><br/>
+    <span><b style="color:red;">Libraries:</b> BeautifulSoup, NLTK, HighCharts, JQuery</span>
   </p>
 </div>
 {% endblock%}
