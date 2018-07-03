@@ -53,7 +53,6 @@ Highcharts.chart('container', {
             y: 16,
             format: '{value:.,0f}'
         },
-        showFirstLabel: false
     }, { // right y axis
         linkedTo: 0,
         gridLineWidth: 0,
@@ -67,7 +66,6 @@ Highcharts.chart('container', {
             y: 16,
             format: '{value:.,0f}'
         },
-        showFirstLabel: false
     }],
     credits: false,
     legend: {
@@ -153,7 +151,6 @@ Highcharts.chart('area', {
             y: 16,
             format: '{value:.,0f}'
         },
-        showFirstLabel: false
     }, { // right y axis
         linkedTo: 0,
         gridLineWidth: 0,
@@ -167,7 +164,6 @@ Highcharts.chart('area', {
             y: 16,
             format: '{value:.,0f}'
         },
-        showFirstLabel: false
     }],
     credits: false,
     tooltip: {
