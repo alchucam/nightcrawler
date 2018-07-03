@@ -96,7 +96,12 @@ class displayer(object):
 
     #displayer methods for search
     def search_find_avgcompound(self, keyword, fSearch):
+<<<<<<< HEAD
         combined_processed = dict()
+=======
+        epoch = datetime.utcfromtimestamp(0).replace(tzinfo=pytz.utc)
+        #combined_processed = dict()
+>>>>>>> working
         analysis_processed = list()
         ratio_processed = list()
         for i in range(0, 7):
@@ -108,7 +113,11 @@ class displayer(object):
             day = int(((timezone.now().replace(hour = 0, minute = 0, second = 0, microsecond = 0) - timedelta(days=i))-epoch).total_seconds()*1000.0)
             try:
                 queryset = newsData.objects.filter(publisher=fSearch, date=timezone.now()-timedelta(i), freqList__contains=keyword)
+<<<<<<< HEAD
                 total_num = newsData.bojects.filter(publisher=fSearch, date=timezone.now()-timedelta(i)).count()
+=======
+                total_num = newsData.objects.filter(publisher=fSearch, date=timezone.now()-timedelta(i)).count()
+>>>>>>> working
 
                 #for sentiment analysis highcharts
                 for query in queryset:
@@ -116,9 +125,15 @@ class displayer(object):
                     count += 1
                 if count is not 0:
                     avgcompound = sumcompound/count
+<<<<<<< HEAD
                     analysis_innerlist.extend([day, float(avgcompound)])
                 else:
                     analysis_innerlist.extend([day, 'null'])
+=======
+                    analysis_innerlist.extend([day, float(round(avgcompound, 3))])
+                else:
+                    analysis_innerlist.extend([day, 0])
+>>>>>>> working
                 analysis_processed.append(analysis_innerlist)
 
                 #for ratio highcharts
@@ -132,13 +147,24 @@ class displayer(object):
                 continue
 
 
+<<<<<<< HEAD
 
         return combined_processed({'analysis':analysis_processed,'ratio':ratio_processed})
+=======
+        combined_processed = {'analysis':analysis_processed,'ratio':ratio_processed}
+        return combined_processed
+>>>>>>> working
 
     def search_displayer(self, keyword):
         fromSearchList = ["nytimes", "ecns", "japantimes", "yonhap"]
         fromList = ["USA","CHN","JPN","KOR"]
+<<<<<<< HEAD
         search_data = dict()
         for i in range(0, 4):
             serach_data[fromList[i]] = search_find_avgcompound(self, keyword, fromSearchList[i])
+=======
+        search_data = defaultdict(dict)
+        for i in range(0, 4):
+            search_data[fromList[i]] = self.search_find_avgcompound(keyword, fromSearchList[i])
+>>>>>>> working
         return search_data

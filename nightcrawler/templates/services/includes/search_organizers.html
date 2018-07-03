@@ -1,0 +1,42 @@
+<script>
+
+
+//search data organization
+var Search_analysis = [{
+  data : {{results.USA.analysis|safe}}, name : 'from USA'},{
+  data : {{results.CHN.analysis|safe}}, name : 'from China'},{
+  data : {{results.JPN.analysis|safe}}, name : 'from Japan'},{
+  data : {{results.KOR.analysis|safe}}, name : 'from South Korea'}]
+
+var Search_ratio = [{
+  data : {{results.USA.ratio|safe}}, name : 'from USA'},{
+  data : {{results.CHN.ratio|safe}}, name : 'from China'},{
+  data : {{results.JPN.ratio|safe}}, name : 'from Japan'},{
+  data : {{results.KOR.ratio|safe}}, name : 'from South Korea'}]
+
+
+function Search_addData(){
+  chart.yAxis[0].update({title:{text:'Sentiment Score'}});
+  area.yAxis[0].update({title:{text:'Ratio'}});
+  for (var i = 0; i < 4; i++){
+    chart.addSeries({
+        name:Search_analysis[i].name,
+        data:Search_analysis[i].data
+    });
+    area.addSeries({
+        name:Search_ratio[i].name,
+        data:Search_ratio[i].data
+    });
+  }
+  chart.setTitle(null, { text: 'From All Countries: keyword search'});
+  area.setTitle(null, { text: 'From All Countries: keyword search'});
+};
+
+
+$('.type').addClass('active');
+$('.searchbox div').css('visibility', 'visible').addClass('active');
+Search_addData();
+
+
+
+</script>

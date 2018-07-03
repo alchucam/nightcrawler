@@ -1,5 +1,13 @@
 <script>
 
+
+var from = "";
+var seriesNum = 0;
+var chart = $('#container').highcharts();
+var area = $('#area').highcharts();
+
+
+//Nonsearch data organization
 var fromUSA = [{
   data : {{template_data.USA.USA|safe}}, name : 'to USA'},{
   data : {{template_data.USA.CHN|safe}}, name : 'to China'},{
@@ -135,11 +143,6 @@ function KORtofunction(i){
   }
 };
 
-
-var from = "";
-var seriesNum = 0;
-var chart = $('#container').highcharts();
-var area = $('#area').highcharts();
 
 function removeAll(){
   chart.yAxis[0].update({title:{text:null}});
@@ -280,6 +283,39 @@ function addData(thisCon, isAll){
 
 
 
+//clear active rows
+function clearTwoActive(){
+  $('.menu-from a').css('visibility','hidden').removeClass('active');
+  $('.menu-to a').css('visibility', 'hidden').removeClass('active');
+  removeAll();
+};
+
+function clearOneActive(){
+  $('.menu-from a').removeClass('active');
+  $('.menu-to a').css('visibility', 'hidden').removeClass('active');
+  removeAll();
+};
+
+//First row
+$('.select').click(function(){
+  $(this).addClass('active').siblings().removeClass('active');
+  $('.menu-from a').css('visibility', 'visible');
+  $('.searchbox div').css('visibility', 'hidden').removeClass('active');
+  removeAll();
+});
+
+//type check.
+$('.type').click(function(){
+  if (!($('.type').hasClass('active'))){
+    $(this).addClass('active').siblings().removeClass('active');
+    $('.select').removeClass('active');
+    clearTwoActive();
+    $('.searchbox div').css('visibility', 'visible').addClass('active');
+  }
+});
+
+
+//Second row
 $('.from').click(function(){
   $(this).addClass('active').siblings().removeClass('active');
   $('.to-all').removeClass('active');
@@ -296,10 +332,11 @@ $('.from').click(function(){
   removeAll();
 });
 
+
+
+//nonsearch functions
 $('.clear').click(function(){
-  $('.menu-from a').removeClass('active');
-  $('.menu-to a').css('visibility', 'hidden').removeClass('active');
-  removeAll();
+  clearOneActive();
 });
 
 $('.to').click(function(){
