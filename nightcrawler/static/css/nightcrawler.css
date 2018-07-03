@@ -70,6 +70,11 @@ a, a:link, a:visited {
   color: white;
 }*/
 
+/***** main *****/
+main {
+	padding-left: 5%;
+}
+
 @media screen and (max-width: 500px) {
   .header a {
     float: none;
@@ -79,12 +84,13 @@ a, a:link, a:visited {
   .header-right {
     float: none;
   }
+	main {
+		padding-left: 2%;
+		padding-right: 2%;
+	}
 }
 
-/***** main *****/
-main {
-	padding-left: 5%;
-}
+
 
 /***** home.html *****/
 .home-title {
@@ -127,7 +133,7 @@ main {
 /***** menu *****/
 .menu-news, .menu-from, .menu-to, .selection {
 	overflow: hidden;
-	padding: 3px 10px;
+	padding: 0 10px 3px 10px;
 }
 
 /*search*/
@@ -204,6 +210,16 @@ main {
   .menu-news, .menu-from, .menu-to, .selection {
     float: none;
   }
+	.menu-news a, .selection a{
+		background-color:#ffe9ff;
+	}
+	.menu-from a{
+		background-color:#ffe9f4;
+	}
+	.menu-to a{
+		background-color:#ffe9e9;
+	}
+
 }
 
 
@@ -255,6 +271,7 @@ main {
     float: none;
     display: block;
     text-align: left;
+		background-color:#ffe9f4;
   }
   .menu-dates {
     float: none;
