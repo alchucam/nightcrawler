@@ -115,7 +115,7 @@ Highcharts.chart('area', {
         width: 700
     },
     title: {
-        text: 'Ratio of Articles Mentioning Other Countries to Total Articles'
+        text: 'Ratio of Articles Containing the Keyword to the Total Articles'
     },
 
     xAxis: {
