@@ -141,6 +141,11 @@ main {
 	display: inline-block;
 }
 
+.search{
+		padding: 0 0px 0 0;
+		overflow: hidden;
+}
+
 .searchfield {
 	float: left;
   color: black;
@@ -148,9 +153,9 @@ main {
   padding: 2px;
   text-decoration: none;
   font-size: 18px;
-  line-height: 2px;
   border-radius: 4px;
 }
+
 
 .menu-news a, .selection a  {
   float: left;
