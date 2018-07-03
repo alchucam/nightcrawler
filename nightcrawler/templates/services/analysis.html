@@ -12,6 +12,7 @@
 <script src="https://www.highcharts.com/media/com_demo/js/highslide-full.min.js"></script>
 <script src="https://www.highcharts.com/media/com_demo/js/highslide.config.js" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="https://www.highcharts.com/media/com_demo/css/highslide.css" />
+<link href="{% static 'css/searchbox.css' %}" rel="stylesheet">
 {% endblock %}
 
 
@@ -27,4 +28,7 @@
 <div id="area" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 <script src="{% static 'js/chart_settings.js' %}"></script>
 {% include 'services/includes/data_organizers.html' %}
+{% if keyword %}
+  {% include 'services/includes/search_organizers.html' %}
+{% endif %}
 {% endblock %}
