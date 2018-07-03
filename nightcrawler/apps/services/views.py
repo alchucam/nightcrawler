@@ -50,25 +50,6 @@ def day(request, publisher, year, month, day):
     return news(request, queryset, subtitle)
 
 def analysis(request):
-<<<<<<< HEAD
-    if request.method == 'GET':
-        results = search_displayer('Trump')
-        return render(reuqest, 'services/analysis.html', {'search':True, 'results':results, 'print':'print'})
-    else:
-        data = displayer()
-        template_data = data.analysis_displayer()
-        ratio_data = data.ratio_displayer()
-        return render(request, 'services/analysis.html', {'search':False,'template_data':template_data, 'ratio_data':ratio_data})
-
-
-
-#def search(request):
-#    query = request.GET.get('q')
-#    results = Post.objects.filter(Q(title__icontains=query))
-#    keyword = 'Trump'
-#    results = search_displayer(keyword)
-#    return render(request, 'services/analysis.html', {'results':results})
-=======
     keyword = request.GET.get('q')     #obtain user input keyword, also serves as a boolean in template
     data = displayer()
     template_data = data.analysis_displayer()
@@ -78,4 +59,3 @@ def analysis(request):
         return render(request, 'services/analysis.html', {'keyword':keyword,'template_data':template_data, 'ratio_data':ratio_data, 'results':results})
     else:
         return render(request, 'services/analysis.html', {'keyword':keyword,'template_data':template_data, 'ratio_data':ratio_data})
->>>>>>> working
