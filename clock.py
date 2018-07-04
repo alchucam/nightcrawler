@@ -20,10 +20,6 @@ from datetime import timedelta
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('interval', minutes=40)
-def ping():
-    print("i'm still alive!")
-
 
 #@sched.scheduled_job('interval', days=1)
 @sched.scheduled_job('cron', timezone='UTC', hour=0)
