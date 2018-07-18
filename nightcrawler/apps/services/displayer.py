@@ -15,7 +15,7 @@ class displayer(object):
         queryset = dict()
         publisher_list = ['nytimes', 'yonhap', 'ecns','japantimes']
         for publisher in publisher_list:
-            query = get_list_or_404(newsData, publisher=publisher, date=today)[-1]
+            query = get_list_or_404(newsData.objects.order_by('id'), publisher=publisher, date=today)[-1]
             queryset.update({publisher:{
                 'publisher':query.publisher,
                 'title':query.newsData_title,
