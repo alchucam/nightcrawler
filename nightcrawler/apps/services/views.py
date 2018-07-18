@@ -13,8 +13,8 @@ def home(request):
     return render(request, 'services/home.html')
 
 def news_front(request):
-    queryset = displayer().news_front_displayer()
     today = timezone.now()
+    queryset = displayer().news_front_displayer(today)
     today_time = date(int(today.year), int(today.month), int(today.day))
     return render(request, 'services/news_front.html', {'queryset':queryset, 'today_time':today_time})
 

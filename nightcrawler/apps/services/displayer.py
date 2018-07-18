@@ -11,11 +11,11 @@ from collections import defaultdict
 #analysis_displayer and ratio_displayer: prepare data for analysis.html, esp. highcharts
 class displayer(object):
     #latest
-    def news_front_displayer(self):
+    def news_front_displayer(self, today):
         queryset = dict()
         publisher_list = ['nytimes', 'yonhap', 'ecns','japantimes']
         for publisher in publisher_list:
-            query = get_list_or_404(newsData, publisher=publisher)[-1]
+            query = get_list_or_404(newsData, publisher=publisher, date=today)[-1]
             queryset.update({publisher:{
                 'publisher':query.publisher,
                 'title':query.newsData_title,
