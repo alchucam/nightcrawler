@@ -13,7 +13,7 @@ class displayer(object):
     #latest
     def news_front_displayer(self):
         today = timezone.now()
-        yesterday = today - timezone.timedelta(1)
+        yesterday = today - timedelta(1)
         queryset = dict()
         publisher_list = ['nytimes', 'yonhap', 'ecns','japantimes']
         for publisher in publisher_list:
