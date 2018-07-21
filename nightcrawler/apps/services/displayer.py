@@ -17,20 +17,13 @@ class displayer(object):
         queryset = dict()
         publisher_list = ['nytimes', 'yonhap', 'ecns','japantimes']
         for publisher in publisher_list:
-            #query = get_list_or_404(newsData.objects.order_by('id'), publisher=publisher, date=yesterday)[-1]
-            #query = list(newsData.objects.filter(publisher=publisher, date=yesterday))
+
             if newsData.objects.filter(publisher=publisher, date=today).exists():
                 query = list(newsData.objects.filter(publisher=publisher, date=today).order_by('id'))[-1]
+                time = date(int(today.year), int(today.month), int(today.day))
             else:
                 query = list(newsData.objects.filter(publisher=publisher, date=yesterday).order_by('id'))[-1]
-            #try:
-                #query = get_list(newsData.objects.order_by('id'), publisher=publisher, date=today)[-1]
-
-            #query = list(newsData.objects.filter(publisher=publisher, date=yesterday))[-1]
-
-            #except newsData.DoesNotExist:
-            #    query = get_list(newsData.objects.order_by('id'), publisher=publisher, date=yesterday)[-1]
-            #     query = newsData.objects.filter(publisher=publisher, date=yesterday).order_by('id').reverse()[0]
+                time = date(int(yesterday.year), int(yesterday.month), int(yesterday.day))
 
             queryset.update({publisher:{
                 'publisher':query.publisher,
@@ -41,7 +34,7 @@ class displayer(object):
                 'dateStr':query.dateStr,
                 'date':query.date,
                 'isArticle':query.isArticle}})
-        return queryset
+        return {'data':queryset, 'time':time}
 
     #sub-method for analysis_displayer
     def list_creator(self, fromCountry, toCountry):

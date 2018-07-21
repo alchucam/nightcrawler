@@ -14,9 +14,8 @@ def home(request):
 
 def news_front(request):
     today = timezone.now()
-    queryset = displayer().news_front_displayer()
-    today_time = date(int(today.year), int(today.month), int(today.day))
-    return render(request, 'services/news_front.html', {'queryset':queryset, 'today_time':today_time})
+    queryset = displayer().news_front_displayer(today)
+    return render(request, 'services/news_front.html', {'queryset':queryset['data'], 'today_time':queryset['time']})
 
 def news(request, queryset, subtitle):
     paginator = Paginator(list(queryset), 10) #list/tuple. not other types.
