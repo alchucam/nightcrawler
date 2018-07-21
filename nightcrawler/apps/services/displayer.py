@@ -17,11 +17,11 @@ class displayer(object):
         queryset = dict()
         publisher_list = ['nytimes', 'yonhap', 'ecns','japantimes']
         for publisher in publisher_list:
-
-            if newsData.objects.filter(publisher=publisher, date=today).exists():
-                query = list(newsData.objects.filter(publisher=publisher, date=today))[-1]
-            else:
-                query = list(newsData.objects.filter(publisher=publisher, date=yesterday))[-1]
+            query = get_list_or_404(newsData.objects.order_by('id'), publisher=publisher, date=yesterday)[-1]
+            # if newsData.objects.filter(publisher=publisher, date=today).exists():
+            #     query = list(newsData.objects.filter(publisher=publisher, date=today))[-1]
+            # else:
+            #     query = list(newsData.objects.filter(publisher=publisher, date=yesterday))[-1]
             #try:
                 #query = get_list(newsData.objects.order_by('id'), publisher=publisher, date=today)[-1]
 
