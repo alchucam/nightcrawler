@@ -11,19 +11,18 @@ from collections import defaultdict
 #analysis_displayer and ratio_displayer: prepare data for analysis.html, esp. highcharts
 class displayer(object):
     #latest
-    def news_front_displayer(self):
-        today = timezone.now()
+    def news_front_displayer(self, today):
+
         yesterday = today - timezone.timedelta(days=1)
-        print(yesterday)
         queryset = dict()
         publisher_list = ['nytimes', 'yonhap', 'ecns','japantimes']
         for publisher in publisher_list:
-            query = get_list_or_404(newsData.objects.order_by('id'), publisher=publisher, date=yesterday)[-1]
+            #query = get_list_or_404(newsData.objects.order_by('id'), publisher=publisher, date=yesterday)[-1]
             #query = list(newsData.objects.filter(publisher=publisher, date=yesterday))
-            # if newsData.objects.filter(publisher=publisher, date=today).exists():
-            #     query = list(newsData.objects.filter(publisher=publisher, date=today))[-1]
-            # else:
-            #     query = list(newsData.objects.filter(publisher=publisher, date=yesterday))[-1]
+            if newsData.objects.filter(publisher=publisher, date=today).exists():
+                query = list(newsData.objects.filter(publisher=publisher, date=today).order_by('id'))[-1]
+            else:
+                query = list(newsData.objects.filter(publisher=publisher, date=yesterday).order_by('id'))[-1]
             #try:
                 #query = get_list(newsData.objects.order_by('id'), publisher=publisher, date=today)[-1]
 
