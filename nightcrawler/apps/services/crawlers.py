@@ -157,6 +157,8 @@ class nyTimesCrawler(abstractBaseCrawler):
             strContainer.encode(encoding='UTF-8',errors='strict')
             for content in newsContent[:]:
                 if nonReg:
+                    if content.p is None:
+                        continue
                     strContainer = strContainer + " " + content.p.text.replace('\n','')
                 else:
                     strContainer = strContainer + " " + content.text
