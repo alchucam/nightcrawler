@@ -18,9 +18,9 @@ class displayer(object):
         publisher_list = ['nytimes', 'yonhap', 'ecns','japantimes']
         for publisher in publisher_list:
             try:
-                query = newsData.objects.filter(publisher=publisher, date=today).order_by('id')[-1]
+                query = newsData.objects.filter(publisher=publisher, date=today).latest('id')
             except newsData.DoesNotExist:
-                query = newsData.objects.filter(publisher=publisher, date=yesterday).order_by('id')[-1]
+                query = newsData.objects.filter(publisher=publisher, date=yesterday).latest('id')
 
             queryset.update({publisher:{
                 'publisher':query.publisher,
