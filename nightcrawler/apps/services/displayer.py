@@ -19,7 +19,7 @@ class displayer(object):
         for publisher in publisher_list:
             try:
                 query = newsData.objects.filter(publisher=publisher, date=today).order_by('id')[-1]
-            except collectedData.DoesNotExist:
+            except newsData.DoesNotExist:
                 query = newsData.objects.filter(publisher=publisher, date=yesterday).order_by('id')[-1]
 
             queryset.update({publisher:{
