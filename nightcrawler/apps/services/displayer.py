@@ -16,14 +16,14 @@ class displayer(object):
         yesterday = today - timezone.timedelta(days=1)
         queryset = dict()
         publisher_list = ['nytimes', 'yonhap', 'ecns','japantimes']
+        checkAnyToday = False
         for publisher in publisher_list:
-
+            #if no news exist today, then grab from yesterday.
             if newsData.objects.filter(publisher=publisher, date=today).exists():
                 query = list(newsData.objects.filter(publisher=publisher, date=today).order_by('id'))[-1]
-                time = date(int(today.year), int(today.month), int(today.day))
+                checkAnyToday = True
             else:
                 query = list(newsData.objects.filter(publisher=publisher, date=yesterday).order_by('id'))[-1]
-                time = date(int(yesterday.year), int(yesterday.month), int(yesterday.day))
 
             queryset.update({publisher:{
                 'publisher':query.publisher,
@@ -34,6 +34,12 @@ class displayer(object):
                 'dateStr':query.dateStr,
                 'date':query.date,
                 'isArticle':query.isArticle}})
+                
+            #if there is at least one news from today, display today's date.
+            if checkAnyToday:
+                time = date(int(today.year), int(today.month), int(today.day))
+            else:
+                time = date(int(yesterday.year), int(yesterday.month), int(yesterday.day))
         return {'data':queryset, 'time':time}
 
     #sub-method for analysis_displayer

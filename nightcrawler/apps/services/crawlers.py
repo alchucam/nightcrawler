@@ -148,6 +148,11 @@ class nyTimesCrawler(abstractBaseCrawler):
             else:
                 newsContent = soup.find_all("div", class_= pMost)
 
+            #if unable to retrieve the contents, skip the article [safebox]
+            if newsContent is None:
+                continue
+
+
             strContainer = "" #contents for analysis
             strContainer.encode(encoding='UTF-8',errors='strict')
             for content in newsContent[:]:
