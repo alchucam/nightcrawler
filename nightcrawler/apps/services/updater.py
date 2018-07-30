@@ -59,14 +59,16 @@ class abstractBaseUpdater(object):
 
                         check.toCheck = dataExport['toCheck']
                         check.to_num += dataExport['to_num']
-                        check.total_num = analyzerObj.total_articles(self.publisher)
+
                         if check.toID is "":
                             check.toID = dataExport['toID']
                         else:
                             check.toID += " " + dataExport['toID']
                         check.sumcompound += dataExport['compoundSum']
                         check.avgcompound = check.sumcompound/check.to_num
-                        check.save()
+
+                    check.total_num = analyzerObj.total_articles(self.publisher) #regardless, always update total_num.
+                    check.save()
 
 
                 except ObjectDoesNotExist: #when the searched collectedData doesn't exists, and the dataExport data has not been entered.
