@@ -23,7 +23,7 @@ class displayer(object):
                 query = list(newsData.objects.filter(publisher=publisher, date=today).order_by('id'))[-1]
                 checkAnyToday = True
             else:
-                return None
+                continue
                 #used to grab from yesterday. change to none
                 #query = list(newsData.objects.filter(publisher=publisher, date=yesterday).order_by('id'))[-1]
 
@@ -40,7 +40,8 @@ class displayer(object):
             #if there is at least one news from today, display today's date.
             if checkAnyToday:
                 time = date(int(today.year), int(today.month), int(today.day))
-            #else:
+            else:
+                time = date(int(today.year), int(today.month), int(today.day))
                 #used to grab from yesterday. change to none
                 #time = date(int(yesterday.year), int(yesterday.month), int(yesterday.day))
         return {'data':queryset, 'time':time}
