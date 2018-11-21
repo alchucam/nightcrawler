@@ -60,6 +60,11 @@ class abstractBaseCrawler(object):
                     else:
                         continue
 
+                #if article is not obtainable, skip to the next articles
+                if newsContent is None:
+                    continue
+
+
                 for content in newsContent:
                     strContainer = strContainer + " " + content.text
 
@@ -184,7 +189,7 @@ class nyTimesCrawler(abstractBaseCrawler):
 
 class yonhapCrawler(abstractBaseCrawler):
     def get_Contents(self):
-        return self.xmlParse('http://english.yonhapnews.co.kr/RSS/headline.xml','yonhap', 'article')
+        return self.xmlParse('http://english.yonhapnews.co.kr/RSS/headline.xml','yonhap', 'article-story')
 
 class ecnsCrawler(abstractBaseCrawler):
     def get_Contents(self):
