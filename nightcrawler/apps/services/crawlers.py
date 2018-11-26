@@ -189,7 +189,7 @@ class nyTimesCrawler(abstractBaseCrawler):
 
 class yonhapCrawler(abstractBaseCrawler):
     def get_Contents(self):
-        return self.xmlParse('http://english.yonhapnews.co.kr/RSS/headline.xml','yonhap', 'article-story')
+        return self.xmlParse('https://en.yna.co.kr/RSS/news.xml','yonhap', 'article-story')
 
 class ecnsCrawler(abstractBaseCrawler):
     def get_Contents(self):
