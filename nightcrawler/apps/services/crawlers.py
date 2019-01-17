@@ -103,8 +103,6 @@ class nyTimesCrawler(abstractBaseCrawler):
             # time = article['publishedAt'][:10] #old api
             time = article['published_date'][:10]
 
-            print(title, url, time)
-
             #parse html
             r2 = requests.get(url)
             soup = BSoup(r2.text, 'html.parser')
