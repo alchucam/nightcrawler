@@ -102,7 +102,8 @@ class nyTimesCrawler(abstractBaseCrawler):
             url = article['url']
             # time = article['publishedAt'][:10] #old api
             time = article['published_date'][:10]
-            
+
+            print(title, url, time)
 
             #parse html
             r2 = requests.get(url)
