@@ -88,17 +88,21 @@ class abstractBaseCrawler(object):
 
 class nyTimesCrawler(abstractBaseCrawler):
     def get_Contents(self):
-        getURL = 'https://newsapi.org/v2/top-headlines?sources=the-new-york-times&apiKey={0}'.format(settings.NYTIMES_API_KEY)
+        # getURL = 'https://newsapi.org/v2/top-headlines?sources=the-new-york-times&apiKey={0}'.format(settings.NYTIMES_API_KEY)
+        getURL = 'https://api.nytimes.com/svc/topstories/v2/home.json?api-key={0}'.format(settings.NYTIMES_API_KEY)
         r = requests.get(getURL)
         json_data = r.json()
         dataExport = dict() #export crawled info out for data store
         compoundValue = 0 #sentiment score
 
         #parse json
-        for article in json_data['articles']:
+        # for article in json_data['articles']: #old api
+        for article in json_data['results']:
             title = article['title']
             url = article['url']
-            time = article['publishedAt'][:10]
+            # time = article['publishedAt'][:10] #old api
+            time = article['published_date'][:10]
+            
 
             #parse html
             r2 = requests.get(url)
