@@ -17,6 +17,7 @@ class displayer(object):
         queryset = dict()
         publisher_list = ['nytimes', 'yonhap', 'ecns','japantimes']
         checkAnyToday = False
+        time = date(int(today.year), int(today.month), int(today.day)) #default time to today.
         for publisher in publisher_list:
             #if no news exist today, then grab from yesterday.
             if newsData.objects.filter(publisher=publisher, date=today).exists():
