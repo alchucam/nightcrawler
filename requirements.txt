@@ -6,7 +6,7 @@ celery==4.2.0
 Django==2.0.6
 django-celery==3.1.15
 django-celery-beat==1.1.0
-django-celery-results==1.0.1
+django-celery-results==2.4.0
 django-celerybeat-status==0.0.10
 django-mysql==2.2.2
 django-windows-tools==0.2.1
